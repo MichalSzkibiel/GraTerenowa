@@ -52,9 +52,8 @@
         <activity android:name=".Summary" />
         <activity android:name=".Rating" />
         <activity
-            android:name=".ViewGame"
-            android:label="@string/title_activity_view_game"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".MapActivity"
+            android:label="@string/title_activity_map"></activity>
     </application>
 
 </manifest>
