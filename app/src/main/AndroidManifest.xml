@@ -51,7 +51,7 @@
         <activity
             android:name=".MapActivity"
             android:label="@string/title_activity_map" />
-        <activity android:name=".GameSetupActivity"></activity>
+        <activity android:name=".GameSetupActivity" android:exported="true"></activity>
     </application>
 
 </manifest>
