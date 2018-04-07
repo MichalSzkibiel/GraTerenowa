@@ -1,8 +1,62 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.graterenowa.graterenowa.GameSetupActivity" />
+    tools:context="com.graterenowa.graterenowa.GameSetupActivity">
+
+    <Spinner
+        android:id="@+id/setChoose"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/setChooseText"
+        android:layout_marginLeft="38dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="12dp"
+        android:layout_weight="1" />
+
+    <fragment
+        class="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:id="@+id/setupMap" />
+
+    <EditText
+        android:id="@+id/setChooseText"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/setupMap"
+        android:layout_marginTop="17dp"
+        android:layout_toLeftOf="@+id/BeginGameButton"
+        android:layout_toStartOf="@+id/BeginGameButton"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Wybierz zestaw" />
+
+    <Button
+        android:id="@+id/findClosestButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/setChooseText"
+        android:layout_alignStart="@+id/setChooseText"
+        android:layout_below="@+id/setChoose"
+        android:layout_marginTop="18dp"
+        android:text="Znajdź najbliższy" />
+
+    <Button
+        android:id="@+id/BeginGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="19dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginRight="19dp"
+        android:text="Rozpocznij grę" />
+
+
+</RelativeLayout>

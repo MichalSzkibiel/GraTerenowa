@@ -44,16 +44,14 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity
-            android:name=".GameSetupActivity"
-            android:label="@string/title_activity_game_setup" />
         <activity android:name=".CorrectAnswer" />
         <activity android:name=".BadAnswer" />
         <activity android:name=".Summary" />
         <activity android:name=".Rating" />
         <activity
             android:name=".MapActivity"
-            android:label="@string/title_activity_map"></activity>
+            android:label="@string/title_activity_map" />
+        <activity android:name=".GameSetupActivity"></activity>
     </application>
 
 </manifest>
