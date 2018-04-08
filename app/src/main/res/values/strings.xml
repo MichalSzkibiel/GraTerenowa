@@ -46,8 +46,8 @@
         ]
       },
       "properties": {
-        "name": "Flaga USA",
-        "quest": "Gwiazdy na górze również w dzień"
+        "name": "Flaga_USA",
+        "quest": "Gwiazdy_na_górze_również_w_dzień"
       }
     },
     {
@@ -60,8 +60,8 @@
         ]
       },
       "properties": {
-        "name": "Pomnik szczęśliwego psa",
-        "quest": "Spiżowy druh"
+        "name": "Pomnik_szczęśliwego_psa",
+        "quest": "Spiżowy_druh"
       }
     },
     {
@@ -74,8 +74,8 @@
         ]
       },
       "properties": {
-        "name": "Rondo rowerowe",
-        "quest": "Kółko dla dwóch kółek"
+        "name": "Rondo_rowerowe",
+        "quest": "Kółko_dla_dwóch_kółek"
       }
     },
     {
@@ -88,8 +88,8 @@
         ]
       },
       "properties": {
-        "name": "Pomnik lotniska",
-        "quest": "Latający kamień na końcu drogi"
+        "name": "Pomnik_lotniska",
+        "quest": "Latający_kamień_na_końcu_drogi"
       }
     },
     {
@@ -103,7 +103,7 @@
       },
       "properties": {
         "name": "Przepust",
-        "quest": "Trawa nad wodą"
+        "quest": "Trawa_nad_wodą"
       }
     },
     {
@@ -117,7 +117,7 @@
       },
       "properties": {
         "name": "Veturilko",
-        "quest": "Zabawka na dwadzieścia minut za darmo"
+        "quest": "Zabawka_na_dwadzieścia_minut_za_darmo"
       }
     },
     {
@@ -130,8 +130,8 @@
         ]
       },
       "properties": {
-        "name": "Krąg megalityczny",
-        "quest": "Kalendarz niczym ze wzgórz angielskich"
+        "name": "Krąg_megalityczny",
+        "quest": "Kalendarz_niczym_ze_wzgórz_angielskich"
       }
     },
     {
@@ -145,7 +145,7 @@
       },
       "properties": {
         "name": "Kładka",
-        "quest": "U podnóży schodów, ale nie będziesz potrącony"
+        "quest": "U_podnóży_schodów$_ale_nie_będziesz_potrącony"
       }
     },
     {
@@ -158,8 +158,8 @@
         ]
       },
       "properties": {
-        "name": "Kuźnia Golfa",
-        "quest": "Młoty na kije"
+        "name": "Kuźnia_Golfa",
+        "quest": "Młoty_na_kije"
       }
     },
     {
@@ -172,8 +172,8 @@
         ]
       },
       "properties": {
-        "name": "Skrzyżowanie na wyspie",
-        "quest": "Cztery drogi, każda przez wodę"
+        "name": "Skrzyżowanie_na_wyspie",
+        "quest": "Cztery_drogi$_każda_przez_wodę"
       }
     },
     {

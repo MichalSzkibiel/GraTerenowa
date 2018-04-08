@@ -16,4 +16,9 @@ public class GameFeature {
         name = nm;
         quest = question;
     }
+
+    @Override
+    public String toString(){
+        return "{Position:" + pos.toString() + ", Name:" + name + ", Quest:" + quest;
+    }
 }
