@@ -13,7 +13,9 @@ public class GameFeature {
 
     public GameFeature(LatLng position, String nm, String question){
         pos = position;
+        nm.replace("_", " ");
         name = nm;
+        question.replace("$", ",");
         quest = question;
     }
 
