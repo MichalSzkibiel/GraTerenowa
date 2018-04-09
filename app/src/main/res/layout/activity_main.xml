@@ -1,18 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.graterenowa.graterenowa.MainActivity">
+    android:layout_centerVertical="true"
+    tools:context="com.graterenowa.graterenowa.MainActivity"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Witamy w grze terenowej!"
+        android:textSize="30sp"
+        android:textColor="@color/kontrast"
+        android:layout_gravity="center_horizontal"/>
 
-</android.support.constraint.ConstraintLayout>
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="200sp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginTop="20sp"
+        android:background="#0099ff"
+        android:text="Graj!"
+        android:textColor="@color/graj"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="Najlepsze Wyniki"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin" />
+
+    <Button
+        android:id="@+id/button4"
+
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:text="Regulamin gry"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        tools:layout_editor_absoluteY="393dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Wyjście"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        tools:layout_editor_absoluteY="258dp" />
+
+</LinearLayout>
