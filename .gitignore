@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+.idea/misc.xml
+.idea/modules.xml
+app/src/main/java/com/graterenowa/graterenowa/GameSetupActivity.java
