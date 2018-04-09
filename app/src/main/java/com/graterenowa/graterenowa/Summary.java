@@ -21,7 +21,7 @@ public class Summary extends AppCompatActivity {
         score=(TextView)findViewById(R.id.twojepodsumowanie);
         score.setText(ans);
 
-        Button KiP = (Button) findViewById(R.id.register);
+        Button KiP = (Button) findViewById(R.id.zakoncz);
         KiP.setOnClickListener(new View.OnClickListener() {
 
             @Override

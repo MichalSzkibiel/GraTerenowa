@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="420dp" />
     <Button
-        android:id="@+id/button"
+        android:id="@+id/zakoncz"
         android:layout_width="170dp"
         android:layout_height="62dp"
         android:layout_marginBottom="16dp"
