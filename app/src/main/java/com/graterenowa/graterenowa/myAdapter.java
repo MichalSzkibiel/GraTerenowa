@@ -1,10 +1,14 @@
 package com.graterenowa.graterenowa;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.google.android.gms.tasks.Task;
 
 import java.util.List;
 
@@ -15,6 +19,7 @@ import java.util.List;
 public class myAdapter extends RecyclerView.Adapter {
 
     private RecyclerView mRecyclerView;
+    private int idx;
 
     private class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView questView;
@@ -37,7 +42,36 @@ public class myAdapter extends RecyclerView.Adapter {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.task, viewGroup, false);
 
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                idx = mRecyclerView.getChildAdapterPosition(v);
+                new AlertDialog.Builder(TaskListActivity.activeTasksListActivity)
+                        .setMessage("Czy na pewno chcesz zgłosić znalezienie punktu do klucza " + GameSetupActivity.current.elements.get(idx).quest + "?")
+                        .setNegativeButton("NIE", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        })
+                        .setPositiveButton("TAK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                serveCommission();
+                            }
+                        })
+                        .show();
+
+
+            }
+        });
+
         return new MyViewHolder(view);
+    }
+
+    private void serveCommission(){
+        GameSetupActivity.current.elements.get(idx).commissions++;
+        notifyDataSetChanged();
     }
 
     @Override

@@ -11,6 +11,7 @@ public class GameFeature {
     public String name;
     public String quest;
     public int commissions;
+    public boolean found;
 
     public GameFeature(LatLng position, String nm, String question){
         pos = position;
@@ -21,6 +22,7 @@ public class GameFeature {
         question = question.replace("$", ",");
         quest = question;
         commissions = 0;
+        found = false;
     }
 
     @Override

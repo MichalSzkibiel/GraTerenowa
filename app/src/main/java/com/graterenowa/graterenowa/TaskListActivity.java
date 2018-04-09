@@ -1,5 +1,6 @@
 package com.graterenowa.graterenowa;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -18,12 +19,13 @@ public class TaskListActivity extends AppCompatActivity {
     private Button mReturnButton;
     private Button mEndGameButton;
     private int points;
+    public static Activity activeTasksListActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
-
+        activeTasksListActivity = this;
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
