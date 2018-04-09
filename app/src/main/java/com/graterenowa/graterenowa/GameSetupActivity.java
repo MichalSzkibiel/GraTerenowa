@@ -54,13 +54,15 @@ public class GameSetupActivity extends FragmentActivity {
                                        int pos, long id) {
                 // An item was selected. You can retrieve the selected item using
                 String json = "";
+                String name = "";
                 switch (parent.getItemAtPosition(pos).toString()) {
                     case "Politechnika Warszawska":
                         return;
                     case "Pole Mokotowskie":
                         json = getResources().getString(R.string.Pole_Mokotowskie_set);
+                        name = "Pole Mokotowskie";
                 }
-                current = new FeaturesContainer(json);
+                current = new FeaturesContainer(name, json);
                 mMap.addPolygon(current.range);
 
             }
