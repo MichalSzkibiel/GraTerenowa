@@ -10,13 +10,17 @@ public class GameFeature {
     public LatLng pos;
     public String name;
     public String quest;
+    public int commissions;
 
     public GameFeature(LatLng position, String nm, String question){
         pos = position;
-        nm.replace("_", " ");
+        nm = nm.replace("_", " ");
+        nm = nm.replace("$", ",");
         name = nm;
-        question.replace("$", ",");
+        question = question.replace("_", " ");
+        question = question.replace("$", ",");
         quest = question;
+        commissions = 0;
     }
 
     @Override

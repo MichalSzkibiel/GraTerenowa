@@ -21,10 +21,12 @@ import java.util.List;
  */
 
 public class FeaturesContainer {
+    public String name;
     public List<GameFeature> elements;
     public PolygonOptions range;
     static private String TAG = "FeaturesContainer";
-    public FeaturesContainer(String json){
+    public FeaturesContainer(String nm, String json){
+        name = nm;
         elements = new ArrayList<GameFeature>();
         range = new PolygonOptions();
         try {

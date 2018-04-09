@@ -49,9 +49,12 @@
         <activity android:name=".Summary" />
         <activity android:name=".Rating" />
         <activity
-            android:name=".MapActivity"
-            android:label="@string/title_activity_map" />
-        <activity android:name=".GameSetupActivity" android:exported="true"></activity>
+            android:name=".GameSetupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true" />
+        <activity android:name=".TaskListActivity"></activity>
     </application>
 
 </manifest>

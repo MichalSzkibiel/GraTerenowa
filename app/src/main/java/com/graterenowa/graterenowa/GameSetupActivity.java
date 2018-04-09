@@ -34,7 +34,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
 
     private GoogleMap mMap;
     private Spinner chooseSpinner;
-    private static FeaturesContainer current;
+    public static FeaturesContainer current;
     private Polygon range_of_game;
     public static String TAG = "My";
     @Override
@@ -60,13 +60,15 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                 if (range_of_game != null)
                     range_of_game.remove();
                 String json = "";
+                String name = "";
                 switch (parent.getItemAtPosition(pos).toString()) {
                     case "Politechnika Warszawska":
                         return;
                     case "Pole Mokotowskie":
                         json = getResources().getString(R.string.Pole_Mokotowskie_set);
+                        name = "Pole Mokotowskie";
                 }
-                current = new FeaturesContainer(json);
+                current = new FeaturesContainer(name, json);
                 range_of_game = mMap.addPolygon(current.range);
                 List<LatLng> points = range_of_game.getPoints();
                 LatLngBounds bounds = getBoundsFromPolygon(points);
@@ -117,17 +119,14 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void makeIntent(){
-        Intent startGame = new Intent(this, MapActivity.class);
+        Intent startGame = new Intent(this, MapsActivity.class);
         startActivity(startGame);
-    }
-
-    public static FeaturesContainer getCurrentSet(){
-        return current;
+        finish();
     }
     private void createDialog(){
         new AlertDialog.Builder(this)
                 .setMessage("Nie wybrałeś jeszcze zestawu.")
-                .setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
