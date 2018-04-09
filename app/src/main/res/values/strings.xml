@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">GraTerenowa</string>
-    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_login">Zaloguj się</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
+    <string name="register">Zarejestruj się</string>
+    <string name="password">Hasło</string>
+    <string name="regul">Regulamin</string>
+    <string name="password_return">Powtórz Hasło</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
@@ -16,20 +20,17 @@
     </string>
     <string name="title_activity_game_setup">Map</string>
     <string name="title_activity_game">Map</string>
-    <string name="title_activity_summary">Summary</string>
+    <string name="title_activity_summary">Podsumowanie</string>
     <string name="title_activity_game_navigation">GameNavigation</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Ustawienia</string>
     <string name="title_activity_view_game">ViewGame</string>
     <string name="title_activity_map">Map</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="game_sets">
-        <item>Politechnika Warszawska</item>
+        <item >Politechnika Warszawska</item>
         <item>Pole Mokotowskie</item>
     </string-array>
     <string name="Pole_Mokotowskie_set">
@@ -46,8 +47,8 @@
         ]
       },
       "properties": {
-        "name": "Flaga_USA",
-        "quest": "Gwiazdy_na_górze_również_w_dzień"
+        "name": "Flaga USA",
+        "quest": "Gwiazdy na górze również w dzień"
       }
     },
     {
@@ -60,8 +61,8 @@
         ]
       },
       "properties": {
-        "name": "Pomnik_szczęśliwego_psa",
-        "quest": "Spiżowy_druh"
+        "name": "Pomnik szczęśliwego psa",
+        "quest": "Spiżowy druh"
       }
     },
     {
@@ -74,8 +75,8 @@
         ]
       },
       "properties": {
-        "name": "Rondo_rowerowe",
-        "quest": "Kółko_dla_dwóch_kółek"
+        "name": "Rondo rowerowe",
+        "quest": "Kółko dla dwóch kółek"
       }
     },
     {
@@ -88,8 +89,8 @@
         ]
       },
       "properties": {
-        "name": "Pomnik_lotniska",
-        "quest": "Latający_kamień_na_końcu_drogi"
+        "name": "Pomnik lotniska",
+        "quest": "Latający kamień na końcu drogi"
       }
     },
     {
@@ -103,7 +104,7 @@
       },
       "properties": {
         "name": "Przepust",
-        "quest": "Trawa_nad_wodą"
+        "quest": "Trawa nad wodą"
       }
     },
     {
@@ -117,7 +118,7 @@
       },
       "properties": {
         "name": "Veturilko",
-        "quest": "Zabawka_na_dwadzieścia_minut_za_darmo"
+        "quest": "Zabawka na dwadzieścia minut za darmo"
       }
     },
     {
@@ -130,8 +131,8 @@
         ]
       },
       "properties": {
-        "name": "Krąg_megalityczny",
-        "quest": "Kalendarz_niczym_ze_wzgórz_angielskich"
+        "name": "Krąg megalityczny",
+        "quest": "Kalendarz niczym ze wzgórz angielskich"
       }
     },
     {
@@ -145,7 +146,7 @@
       },
       "properties": {
         "name": "Kładka",
-        "quest": "U_podnóży_schodów$_ale_nie_będziesz_potrącony"
+        "quest": "U podnóży schodów, ale nie będziesz potrącony"
       }
     },
     {
@@ -158,8 +159,8 @@
         ]
       },
       "properties": {
-        "name": "Kuźnia_Golfa",
-        "quest": "Młoty_na_kije"
+        "name": "Kuźnia Golfa",
+        "quest": "Młoty na kije"
       }
     },
     {
@@ -172,8 +173,8 @@
         ]
       },
       "properties": {
-        "name": "Skrzyżowanie_na_wyspie",
-        "quest": "Cztery_drogi$_każda_przez_wodę"
+        "name": "Skrzyżowanie na wyspie",
+        "quest": "Cztery drogi, każda przez wodę"
       }
     },
     {
@@ -240,5 +241,5 @@
   ]
 }
     </string>
-  <string name="Politechnika_Warszawska_set"></string>
+    <string name="Politechnika_Warszawska_set"></string>
 </resources>
