@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.graterenowa.graterenowa">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -45,15 +44,17 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
         <activity android:name=".CorrectAnswer" />
         <activity android:name=".BadAnswer" />
         <activity android:name=".Summary" />
         <activity android:name=".Rating" />
         <activity
-            android:name=".MapActivity"
-            android:label="@string/title_activity_map" />
-        <activity android:name=".GameSetupActivity" android:exported="true"></activity>
+            android:name=".GameSetupActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MapsActivity"
+            android:exported="true" />
+        <activity android:name=".TaskListActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,206 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.98893558607392,
+          52.210876129664584
+        ]
+      },
+      "properties": {
+        "name": "Flaga USA",
+        "quest": "Gwiazdy na górze również w dzień"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.994046155114233,
+          52.21132852210809
+        ]
+      },
+      "properties": {
+        "name": "Pomnik szczęśliwego psa",
+        "quest": "Spiżowy druh"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.99770681511677,
+          52.21204511161503
+        ]
+      },
+      "properties": {
+        "name": "Rondo rowerowe",
+        "quest": "Kółko dla dwóch kółek"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.997807349882578,
+          52.210472199073635
+        ]
+      },
+      "properties": {
+        "name": "Pomnik lotniska",
+        "quest": "Latający kamień na końcu drogi"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.997443909977505,
+          52.210782008569375
+        ]
+      },
+      "properties": {
+        "name": "Przepust",
+        "quest": "Trawa nad wodą"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.998382683132718,
+          52.21056670352547
+        ]
+      },
+      "properties": {
+        "name": "Veturilko",
+        "quest": "Zabawka na dwadzieścia minut za darmo"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.004006331035498,
+          52.21306846004457
+        ]
+      },
+      "properties": {
+        "name": "Krąg megalityczny",
+        "quest": "Kalendarz niczym ze wzgórz angielskich"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.005858062228754,
+          52.212966297844375
+        ]
+      },
+      "properties": {
+        "name": "Kładka",
+        "quest": "U podnóży schodów, ale nie będziesz potrącony"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.991489973247667,
+          52.211719581520846
+        ]
+      },
+      "properties": {
+        "name": "Kuźnia Golfa",
+        "quest": "Młoty na kije"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.00045855794872,
+          52.21186908511815
+        ]
+      },
+      "properties": {
+        "name": "Skrzyżowanie na wyspie",
+        "quest": "Cztery drogi, każda przez wodę"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              20.98836858277832,
+              52.21170832603342
+            ],
+            [
+              20.98766047959839,
+              52.209512540136664
+            ],
+            [
+              20.997037482314454,
+              52.20735609387363
+            ],
+            [
+              20.998711180739747,
+              52.20719830101324
+            ],
+            [
+              20.998432231002198,
+              52.20886824703456
+            ],
+            [
+              21.00113589768921,
+              52.20960458124568
+            ],
+            [
+              21.00701565749432,
+              52.21061069666112
+            ],
+            [
+              21.00577111251141,
+              52.215107228202434
+            ],
+            [
+              20.997209501335874,
+              52.213779352504346
+            ],
+            [
+              20.993668985436216,
+              52.21305623518299
+            ],
+            [
+              20.988943046254576,
+              52.212227908311235
+            ],
+            [
+              20.98836858277832,
+              52.21170832603342
+            ]
+          ]
+        ]
+      },
+      "properties": {
+          "name":"range"
+       }
+    }
+  ]
+}
