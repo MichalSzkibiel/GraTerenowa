@@ -260,7 +260,7 @@
       },
       "properties":{
         "name": "Gmach_Główny_Politechniki_Warszawskiej"
-        "quest": "Różowy_eklektyczny_pełen_wiedzy"
+        "quest": "Różowy$_eklektyczny$_pełen_wiedzy"
       }
     },
     {
@@ -290,7 +290,7 @@
     },
     "properties":{
         "name": "Gmach_Fizyki"
-        "quest": "Doktorantką_była_dwukrotna_Noblistka"
+        "quest": "Jego_doktorantką_była_dwukrotna_Noblistka"
       }
     },
     {
@@ -305,7 +305,7 @@
     },
     "properties":{
         "name": "Komin_starej_kotłowni"
-        "quest": "Kiedyś_ogrzewał_studentów_aby_mieli_ciepło"
+        "quest": "Kiedyś_ogrzewał_studentów$_aby_mieli_ciepło"
       }
     },
     {
@@ -319,8 +319,8 @@
       }
     },
     "properties":{
-        "name": "Gmach_Fizyki"
-        "quest": "Doktorantką_była_dwukrotna_Noblistka"
+        "name": "Gmach_Chemii"
+        "quest": "Czasami_w_piwnicy_mu_coś_ekspoduje"
       }
     },
     {
@@ -335,8 +335,8 @@
       }
     },
     "properties":{
-        "name": "Gmach_Chemii"
-        "quest": "Czasami_w_piwnicy_mu_coś_ekspoduje"
+        "name": "Gmach_Wydziału_Transportu"
+        "quest": "Steruje_ruchem_rydwanów"
       }
     },
     {
@@ -350,8 +350,8 @@
       }
     },
     "properties":{
-        "name": "Gmach_Wydziału_Transportu"
-        "quest": "Steruje_ruchem_rydwanów"
+        "name": "Gmach_Lotniczy-MEiLu"
+        "quest": "Silnik_odrzutowca"
       }
     },
     {
@@ -365,8 +365,8 @@
       }
     },
     "properties":{
-        "name": "Gmach_Lotniczy-MEiLu"
-        "quest": "Silnik_odrzutowca"
+        "name": "Instytut_Techniki_Cieplnej"
+        "quest": "Wielka_Turbina"
       }
     },
     {
@@ -380,8 +380,8 @@
       }
     },
     "properties":{
-        "name": "Instytut_Techniki_Cieplnej"
-        "quest": "Wielka_Turbina"
+        "name": "Gmach_Elektroniki"
+        "quest": "Za_drzewami_pełno_komputerów"
       }
     },
     {
@@ -395,13 +395,12 @@
       }
     },
     "properties":{
-        "name": "Gmach_Elektroniki"
-        "quest": "Za_drzewami_pełno_komputerów"
+        "name": "Gmach_Matematyki"
+        "quest": "Nowoczesny$_pełen_liczb"
       }
     },
     {
       "type": "Feature",
-      "properties": {},
       "geometry": {
         "type": "Polygon",
         "coordinates": [
@@ -476,6 +475,9 @@
             ]
           ]
         ]
+      },
+    "properties": {
+        "name":"range"
       }
     }
   ]
