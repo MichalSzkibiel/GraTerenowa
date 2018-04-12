@@ -111,14 +111,20 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                     case "Politechnika Warszawska":
                         json = getResources().getString(R.string.Politechnika_Warszawska_set);
                         name = "Politechnika Warszawska";
+                        break;
                     case "Pole Mokotowskie":
                         json = getResources().getString(R.string.Pole_Mokotowskie_set);
                         name = "Pole Mokotowskie";
+                        break;
                 }
                 current = new FeaturesContainer(name, json);
                 range_of_game = mMap.addPolygon(current.range);
                 List<LatLng> points = range_of_game.getPoints();
-                LatLngBounds bounds = getBoundsFromPolygon(position, points);
+                LatLngBounds bounds;
+                if (position != null)
+                    bounds = getBoundsFromPolygon(position, points);
+                else
+                    bounds = getBoundsFromPolygon(points.get(0), points);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
 
             }
