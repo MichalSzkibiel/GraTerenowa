@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         //zaczynamy grac!!!
             @Override
             public void onClick(View view) {
-                Intent grac = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent grac = new Intent(getApplicationContext(),GameSetupActivity.class);
                 startActivity(grac);
             }
         });
