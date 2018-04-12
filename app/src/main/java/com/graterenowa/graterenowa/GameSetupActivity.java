@@ -109,7 +109,8 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                 String name = "";
                 switch (parent.getItemAtPosition(pos).toString()) {
                     case "Politechnika Warszawska":
-                        return;
+                        json = getResources().getString(R.string.Politechnika_Warszawska_set);
+                        name = "Politechnika Warszawska";
                     case "Pole Mokotowskie":
                         json = getResources().getString(R.string.Pole_Mokotowskie_set);
                         name = "Pole Mokotowskie";

@@ -35,6 +35,7 @@ import java.util.List;
 
 import static android.Manifest.permission.READ_CONTACTS;
 //Okno logowania, twoja działka Karol
+//właśnie próbuje to zrozumieć
 /**
  * A login screen that offers login via email/password.
  */
