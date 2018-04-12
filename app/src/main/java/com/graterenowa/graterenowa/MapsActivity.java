@@ -25,6 +25,7 @@ import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
@@ -32,6 +33,8 @@ import com.google.android.gms.maps.model.Polygon;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static java.security.AccessController.getContext;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -97,19 +100,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     };
 
-    public void updatePoints(){
+    public void updatePoints(boolean found, int idx, LatLng position){
         pointsView.setText(String.valueOf(points));
+        if (position != null){
+            if (found){
+                mMap.addMarker(new MarkerOptions()
+                                .position(position)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                                .title(GameSetupActivity.current.elements.get(idx).name + "\n" + GameSetupActivity.current.elements.get(idx).quest));
+            }
+            else{
+                mMap.addMarker(new MarkerOptions()
+                        .position(position)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        .title(GameSetupActivity.current.elements.get(idx).quest));
+            }
+        }
     }
 
     @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        double lat = intent.getDoubleExtra("lat", 0.0);
+        double lon = intent.getDoubleExtra("lon", 0.0);
+        position = new LatLng(lat, lon);
         activeMapsActivity = this;
         setContentView(R.layout.activity_maps);
         points = 0;
         pointsView = (TextView) findViewById(R.id.pointsView);
-        updatePoints();
+        updatePoints(false, -1, null);
         starttime = System.currentTimeMillis();
         timer = (TextView) findViewById(R.id.timeView);
         gameSetView = (TextView) findViewById(R.id.gameSetLabel);
@@ -138,6 +159,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMapStyle(new MapStyleOptions(getResources()
+                .getString(R.string.map_style)));
+
         Polygon range_of_game = mMap.addPolygon(GameSetupActivity.current.range);
         List<LatLng> points = range_of_game.getPoints();
         LatLngBounds bounds = GameSetupActivity.getBoundsFromPolygon(points.get(0), points);

@@ -93,6 +93,7 @@ public class myAdapter extends RecyclerView.Adapter {
             Intent intent = new Intent(TaskListActivity.activeTasksListActivity, CorrectAnswer.class);
             intent.putExtra("index", idx);
             TaskListActivity.activeTasksListActivity.startActivity(intent);
+            MapsActivity.activeMapsActivity.updatePoints(true, idx, position);
         }
         else{
             int points_loss = 1000;
@@ -103,9 +104,9 @@ public class myAdapter extends RecyclerView.Adapter {
             Intent intent = new Intent(TaskListActivity.activeTasksListActivity, BadAnswer.class);
             intent.putExtra("index", idx);
             TaskListActivity.activeTasksListActivity.startActivity(intent);
+            MapsActivity.activeMapsActivity.updatePoints(false, idx, position);
         }
         notifyDataSetChanged();
-        MapsActivity.activeMapsActivity.updatePoints();
         TaskListActivity.activeTasksListActivity.finish();
     }
 

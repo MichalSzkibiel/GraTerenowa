@@ -68,7 +68,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                     locMarker.remove();
                 locCircle = mMap.addCircle(new CircleOptions()
                                     .center(position)
-                                    .fillColor(Color.BLUE)
+                                    .fillColor(0x220000FF)
                                     .radius(accuracy)
                                     .strokeWidth(0.0f));
                 locMarker = mMap.addMarker(new MarkerOptions()
@@ -142,6 +142,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                 }
                 else if(!is_in_a_range()){
                     createRangeDialog();
+                    return;
                 }
                 makeIntent();
             }
@@ -181,6 +182,8 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
 
     private void makeIntent(){
         Intent startGame = new Intent(this, MapsActivity.class);
+        startGame.putExtra("lat", position.latitude);
+        startGame.putExtra("lon", position.longitude);
         startActivity(startGame);
         finish();
     }
@@ -207,8 +210,43 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private boolean is_in_a_range(){
-        //To na deser
-        List<LatLng> points_of_range = range_of_game.getPoints();
-        return true;
+        List<LatLng> points = range_of_game.getPoints();
+        int count = 0;
+        if (position == null)
+            return false;
+        double lon0 = position.longitude;
+        double lat0 = position.latitude;
+        for (int i = 0; i < points.size(); ++i){
+            double lat1 = points.get(i).latitude;
+            double lat2 = points.get((i + 1)%points.size()).latitude;
+            double lon1 = points.get(i).longitude;
+            double lon2 = points.get((i + 1)%points.size()).longitude;
+
+            if (lon1 > lon0 && lon2 < lon0 || lon1 < lon0 && lon2 > lon0) {
+                double a = (lon1 - lon2)/(lat1 - lat2);
+                double b = lat1 - lon1*a;
+                if (lon0*a + b > lat0) {
+                    count++;
+                }
+                else if(lon0*a + b == lat0){
+                    return true;
+                }
+            }
+            else if(lon2 == lon0){
+                if (lat0 == lat2){
+                    return true;
+                }
+                double lon3 = 0.0;
+                int it = i + 1;
+                do{
+                    lon3 = points.get((++it)%points.size()).longitude;
+                }while(lon3 == lon2);
+                double lat3 = points.get((++it)%points.size()).latitude;
+                if (lon3 > lon0 && lon2 < lon0 || lon3 < lon0 && lon2 > lon0){
+                    count++;
+                }
+            }
+        }
+        return count%2 == 1;
     }
 }
