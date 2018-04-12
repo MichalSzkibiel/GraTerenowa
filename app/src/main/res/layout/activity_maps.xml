@@ -25,7 +25,7 @@
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp"
         android:layout_marginTop="16dp"
-        android:text="Punkty" />
+        android:text="@string/points" />
 
     <TextView
         android:id="@+id/pointsView"
@@ -34,7 +34,7 @@
         android:layout_alignLeft="@+id/pointsLabel"
         android:layout_alignStart="@+id/pointsLabel"
         android:layout_below="@+id/pointsLabel"
-        android:text="TextView"
+        android:text=""
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -46,7 +46,7 @@
         android:layout_alignBottom="@+id/pointsLabel"
         android:layout_alignEnd="@+id/pointsTotalView"
         android:layout_alignRight="@+id/pointsTotalView"
-        android:text="Czas Gry" />
+        android:text="@string/gameTime" />
 
     <TextView
         android:id="@+id/gameSetLabel"
@@ -55,7 +55,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
-        android:text="TextView"
+        android:text=""
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
@@ -68,7 +68,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
-        android:text="Zobacz Zadania" />
+        android:text="@string/seeTasks" />
 
     <TextView
         android:id="@+id/pointsTotalLabel"
@@ -78,7 +78,7 @@
         android:layout_alignStart="@+id/pointsView"
         android:layout_below="@+id/pointsView"
         android:layout_marginTop="17dp"
-        android:text="Punktów za skończenie teraz:" />
+        android:text="@string/pointsLook" />
 
     <TextView
         android:id="@+id/pointsTotalView"
@@ -89,7 +89,7 @@
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/pointsTotalLabel"
         android:layout_toRightOf="@+id/pointsTotalLabel"
-        android:text="TextView" />
+        android:text="" />
 
     <TextView
         android:id="@+id/timeView"

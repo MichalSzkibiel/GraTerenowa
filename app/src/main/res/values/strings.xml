@@ -30,6 +30,10 @@
     <string name="title_activity_view_game">ViewGame</string>
     <string name="title_activity_map">Map</string>
 
+    <string name="setChooseText">Wybierz zestaw</string>
+    <string name="findClosest">Znajdź najbliższy</string>
+    <string name="startGame">Rozpocznij grę</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="game_sets">
@@ -245,4 +249,17 @@
 }
     </string>
   <string name="Politechnika_Warszawska_set"></string>
+  <string name="points">Punkty</string>
+  <string name="gameTime">Czas Gry</string>
+  <string name="seeTasks">Zobacz Zadania</string>
+  <string name="pointsLook">Punktów za skończenie teraz:</string>
+  <string name="backToMap">Wróć do mapy</string>
+  <string name="endGame">Zakończ grę</string>
+  <string name="CommissionsNumberText">Zgłoszono tyle razy:</string>
+  <string name="good_answer">Dobra odpowiedź do klucza:</string>
+  <string name="means">Czyli:</string>
+  <string name="correct_explain">Otrzymujesz 5000 punktów</string>
+  <string name="bad_answer">Zła odpowiedź do klucza:</string>
+  <string name="bad_explain1">Tracisz 1000 punktów</string>
+  <string name="bad_explain2">Tym razem nie tracisz punktów, ale za każde następne złe zgłoszenie dla tego klucza stracisz 1000 punktów</string>
 </resources>
