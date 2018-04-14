@@ -65,9 +65,13 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                     case "Politechnika Warszawska":
                         json = getResources().getString(R.string.Politechnika_Warszawska_set);
                         name = "Politechnika Warszawska";
+                        break;//Break jest konieczny do zamkniecia funkcji switch, ale tutaj powoduje zatrzymanie aplikacji
+                    //czyzby JSON byl zly? Sprawdzalem 3-krotnie!
                     case "Pole Mokotowskie":
                         json = getResources().getString(R.string.Pole_Mokotowskie_set);
                         name = "Pole Mokotowskie";
+                   /* default:
+                        return;*/
                 }
                 current = new FeaturesContainer(name, json);
                 range_of_game = mMap.addPolygon(current.range);
