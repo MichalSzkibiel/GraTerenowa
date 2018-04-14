@@ -261,6 +261,14 @@
   <string name="bad_answer">Zła odpowiedź do klucza:</string>
   <string name="bad_explain1">Tracisz 1000 punktów</string>
   <string name="bad_explain2">Tym razem nie tracisz punktów, ale za każde następne złe zgłoszenie dla tego klucza stracisz 1000 punktów</string>
+  <string name="regulamin">Celem gry jest odgadniecię 10-ciu zagadek przedstawiających obiekt położony na danym terenie. Zakres obszaru na którym znajdują się ukrytne
+    pod zagadką elementy masz zaznaczony na mapie podczas wybierania zestawu zadań. Po rozpoczęciu gry liczony jest ci czas, podczas którego co sekundę tracisz jeden punkt.
+    Na starcie masz 3600 punktów<b>Postaraj się aby nie spadło ci do zera!</b> Za każdą poprawną odpowiedź otrzymujesz 5000 punktów. Za pierwszą błędną odpowiedź nie tracisz żadnych,
+    ale za każdą kolejną dla danego punktu tracisz zawsze po 1000! Zakończyć grę możesz w każdej chwili. Klikając przycisk zakończ. Zostaniesz poinformowany wtedy o ilości zdobych punktów,
+    a twój wynik zapisze się w zakładce "Najlepsze Wyniki" na stosownej pozycji. Jeśli chesz zmienić zestaw, możesz w każdej chwili powrócić do menu wyborów zestawów.
+    <b>Pamiętaj tylko, że tracisz dotychczasowe osiągnięcia i wybrany ponownie zestaw musisz zaczynać od zera!</b><br/>
+    <p align="center">POWODZENIA!!!</p>
+  </string>
   <string name="Politechnika_Warszawska_set">
 {
   "type": "FeatureCollection",

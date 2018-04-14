@@ -10,6 +10,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class TaskListActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class TaskListActivity extends AppCompatActivity {
     private Button mEndGameButton;
     private int points;
     public static Activity activeTasksListActivity;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +57,7 @@ public class TaskListActivity extends AppCompatActivity {
                 end_game();
             }
         });
+        mDatabase = FirebaseDatabase.getInstance().getReference("odwiedzone");
     }
 
     private void returnIntent(){

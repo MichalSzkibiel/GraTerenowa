@@ -18,6 +18,7 @@
         tools:layout_editor_absoluteX="30dp" />
 
     <ListView
+        android:id="@+id/Ranking"
         android:layout_width="369dp"
         android:layout_height="402dp"
         tools:layout_editor_absoluteX="4dp"

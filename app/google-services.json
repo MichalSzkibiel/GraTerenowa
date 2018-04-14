@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "577851915660",
+    "firebase_url": "https://graterenowa-ea6b2.firebaseio.com",
+    "project_id": "graterenowa-ea6b2",
+    "storage_bucket": "graterenowa-ea6b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577851915660:android:2d80d850dbb4bcc6",
+        "android_client_info": {
+          "package_name": "com.graterenowa.graterenowa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "577851915660-ifvcrgrnpk7ekv102vpfifs3ujtt8g75.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.graterenowa.graterenowa",
+            "certificate_hash": "d8cc9bce172c58deea8f1e011e45a4a061aa44ee"
+          }
+        },
+        {
+          "client_id": "577851915660-quaap6eg1otdut2s957p7rshrebddaiu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAacKZMXRp0zpHZM84NBoc7CC1rWM3gA4U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "577851915660-quaap6eg1otdut2s957p7rshrebddaiu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
