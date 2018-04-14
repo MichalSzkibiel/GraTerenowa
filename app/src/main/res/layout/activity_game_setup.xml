@@ -33,7 +33,7 @@
         android:layout_toLeftOf="@+id/BeginGameButton"
         android:layout_toStartOf="@+id/BeginGameButton"
         android:ems="10"
-        android:text="Wybierz zestaw" />
+        android:text="@string/setChooseText" />
 
     <Button
         android:id="@+id/findClosestButton"
@@ -43,7 +43,7 @@
         android:layout_alignStart="@+id/setChooseText"
         android:layout_below="@+id/setChoose"
         android:layout_marginTop="18dp"
-        android:text="Znajdź najbliższy" />
+        android:text="@string/findClosest" />
 
     <Button
         android:id="@+id/BeginGameButton"
@@ -55,7 +55,7 @@
         android:layout_marginBottom="19dp"
         android:layout_marginEnd="19dp"
         android:layout_marginRight="19dp"
-        android:text="Rozpocznij grę" />
+        android:text="@string/startGame" />
 
 
 </RelativeLayout>

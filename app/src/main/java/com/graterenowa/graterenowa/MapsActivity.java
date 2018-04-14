@@ -1,24 +1,40 @@
 package com.graterenowa.graterenowa;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.MapStyleOptions;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static java.security.AccessController.getContext;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -30,7 +46,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private TextView timer;
     public static long starttime;
     private Button goToTasks;
-    public static Activity activeMapsActivity;
+    public static MapsActivity activeMapsActivity;
+    private FusedLocationProviderClient locator;
+    private Circle locCircle;
+    private Marker locMarker;
+    private LatLng position;
+    private double accuracy;
+    private LocationCallback callback = new LocationCallback(){
+        @Override
+        public void onLocationResult(LocationResult locationResult){
+            if(locationResult.getLastLocation() != null){
+                double lat = locationResult.getLastLocation().getLatitude();
+                double lon = locationResult.getLastLocation().getLongitude();
+                accuracy = locationResult.getLastLocation().getAccuracy();
+                position = new LatLng(lat, lon);
+                if (locCircle != null)
+                    locCircle.remove();
+                if (locMarker != null)
+                    locMarker.remove();
+                locCircle = mMap.addCircle(new CircleOptions()
+                        .center(position)
+                        .fillColor(Color.BLUE)
+                        .radius(accuracy)
+                        .strokeWidth(0.0f));
+                locMarker = mMap.addMarker(new MarkerOptions()
+                        .position(position)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                        .title("Tu jesteś"));
+            }
+        }
+    };
 
     class TimeUpdater extends TimerTask {
 
@@ -55,21 +100,37 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     };
 
-    private void updatePoints(){
+    public void updatePoints(boolean found, int idx, LatLng position){
         pointsView.setText(String.valueOf(points));
+        if (position != null){
+            if (found){
+                mMap.addMarker(new MarkerOptions()
+                                .position(position)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                                .title(GameSetupActivity.current.elements.get(idx).name + "\n" + GameSetupActivity.current.elements.get(idx).quest));
+            }
+            else{
+                mMap.addMarker(new MarkerOptions()
+                        .position(position)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        .title(GameSetupActivity.current.elements.get(idx).quest));
+            }
+        }
     }
 
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        double lat = intent.getDoubleExtra("lat", 0.0);
+        double lon = intent.getDoubleExtra("lon", 0.0);
+        position = new LatLng(lat, lon);
         activeMapsActivity = this;
         setContentView(R.layout.activity_maps);
-        MapFragment mapFragment = (MapFragment) getFragmentManager()
-                .findFragmentById(R.id.gameMap);
-        mapFragment.getMapAsync(this);
         points = 0;
         pointsView = (TextView) findViewById(R.id.pointsView);
-        updatePoints();
+        updatePoints(false, -1, null);
         starttime = System.currentTimeMillis();
         timer = (TextView) findViewById(R.id.timeView);
         gameSetView = (TextView) findViewById(R.id.gameSetLabel);
@@ -84,14 +145,26 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 makeIntent();
             }
         });
+        locator = LocationServices.getFusedLocationProviderClient(this);
+        @SuppressLint("RestrictedApi") LocationRequest request = new LocationRequest();
+        request.setInterval(1000);
+
+        locator.requestLocationUpdates(request, callback, null);
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.gameMap);
+        mapFragment.getMapAsync(this);
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.setMapStyle(new MapStyleOptions(getResources()
+                .getString(R.string.map_style)));
+
         Polygon range_of_game = mMap.addPolygon(GameSetupActivity.current.range);
         List<LatLng> points = range_of_game.getPoints();
-        LatLngBounds bounds = GameSetupActivity.getBoundsFromPolygon(points);
+        LatLngBounds bounds = GameSetupActivity.getBoundsFromPolygon(points.get(0), points);
         mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 20));
     }
 
@@ -103,5 +176,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private void makeIntent(){
         Intent intent = new Intent(this, TaskListActivity.class);
         startActivity(intent);
+    }
+
+    public LatLng getPosition(){
+        return position;
+    }
+
+    public double getAccuracy(){
+        return accuracy;
     }
 }
