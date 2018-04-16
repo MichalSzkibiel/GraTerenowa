@@ -87,7 +87,12 @@ public class myAdapter extends RecyclerView.Adapter {
         LatLng position = MapsActivity.activeMapsActivity.getPosition();
         double accuracy = MapsActivity.activeMapsActivity.getAccuracy();
         double distance = distance(posOfObject.latitude, posOfObject.longitude, position.latitude, position.longitude);
-        if (distance <= accuracy){
+        if (accuracy > 100){
+            GameSetupActivity.current.elements.get(idx).commissions--;
+            TaskListActivity.activeTasksListActivity.accuracy_dialog();
+            return;
+        }
+        else if (distance <= accuracy){
             MapsActivity.points += 5000;
             GameSetupActivity.current.elements.get(idx).found = true;
             Intent intent = new Intent(TaskListActivity.activeTasksListActivity, CorrectAnswer.class);

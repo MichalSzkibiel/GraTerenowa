@@ -19,7 +19,7 @@ public class TaskListActivity extends AppCompatActivity {
     private Button mReturnButton;
     private Button mEndGameButton;
     private int points;
-    public static Activity activeTasksListActivity;
+    public static TaskListActivity activeTasksListActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +86,18 @@ public class TaskListActivity extends AppCompatActivity {
         startActivity(intent);
         MapsActivity.activeMapsActivity.finish();
         finish();
+    }
+
+    public void accuracy_dialog(){
+        new AlertDialog.Builder(this)
+                .setMessage("Dokładność pozycji jest większa niż 100 metrów. Zgłoszenie nieważne.")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
     }
 
 }

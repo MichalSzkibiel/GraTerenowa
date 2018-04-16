@@ -490,9 +490,10 @@
 }
   </string>
     <string name = "map_style">[
+[
   {
-    "featureType": "administrative",
-    "elementType": "geometry",
+    "featureType": "poi",
+    "elementType": "labels.text",
     "stylers": [
       {
         "visibility": "off"
@@ -500,7 +501,7 @@
     ]
   },
   {
-    "featureType": "poi",
+    "featureType": "poi.business",
     "stylers": [
       {
         "visibility": "off"
@@ -525,8 +526,5 @@
     ]
   }
 ]
-
-
-
 </string>
 </resources>

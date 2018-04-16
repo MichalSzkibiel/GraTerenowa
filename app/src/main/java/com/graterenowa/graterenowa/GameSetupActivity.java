@@ -184,6 +184,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
         Intent startGame = new Intent(this, MapsActivity.class);
         startGame.putExtra("lat", position.latitude);
         startGame.putExtra("lon", position.longitude);
+        MapsActivity.initialize_static_content();
         startActivity(startGame);
         finish();
     }

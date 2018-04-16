@@ -30,6 +30,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polygon;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -52,6 +53,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Marker locMarker;
     private LatLng position;
     private double accuracy;
+    private static List<MarkerOptions> green_markers;
+    private static List<MarkerOptions> red_markers;
     private LocationCallback callback = new LocationCallback(){
         @Override
         public void onLocationResult(LocationResult locationResult){
@@ -66,7 +69,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     locMarker.remove();
                 locCircle = mMap.addCircle(new CircleOptions()
                         .center(position)
-                        .fillColor(Color.BLUE)
+                        .fillColor(0x220000FF)
                         .radius(accuracy)
                         .strokeWidth(0.0f));
                 locMarker = mMap.addMarker(new MarkerOptions()
@@ -100,20 +103,31 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     };
 
+    public static void initialize_static_content(){
+        points = 0;
+        starttime = System.currentTimeMillis();
+        green_markers = new ArrayList<MarkerOptions>();
+        red_markers = new ArrayList<MarkerOptions>();
+    }
+
     public void updatePoints(boolean found, int idx, LatLng position){
         pointsView.setText(String.valueOf(points));
         if (position != null){
             if (found){
-                mMap.addMarker(new MarkerOptions()
-                                .position(position)
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
-                                .title(GameSetupActivity.current.elements.get(idx).name + "\n" + GameSetupActivity.current.elements.get(idx).quest));
+                MarkerOptions new_marker = new MarkerOptions()
+                        .position(position)
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                        .title(GameSetupActivity.current.elements.get(idx).name + "\n" + GameSetupActivity.current.elements.get(idx).quest);
+                mMap.addMarker(new_marker);
+                green_markers.add(new_marker);
             }
             else{
-                mMap.addMarker(new MarkerOptions()
+                MarkerOptions new_marker = new MarkerOptions()
                         .position(position)
                         .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
-                        .title(GameSetupActivity.current.elements.get(idx).quest));
+                        .title(GameSetupActivity.current.elements.get(idx).quest);
+                mMap.addMarker(new_marker);
+                red_markers.add(new_marker);
             }
         }
     }
@@ -128,10 +142,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         position = new LatLng(lat, lon);
         activeMapsActivity = this;
         setContentView(R.layout.activity_maps);
-        points = 0;
         pointsView = (TextView) findViewById(R.id.pointsView);
         updatePoints(false, -1, null);
-        starttime = System.currentTimeMillis();
         timer = (TextView) findViewById(R.id.timeView);
         gameSetView = (TextView) findViewById(R.id.gameSetLabel);
         gameSetView.setText(GameSetupActivity.current.name);
@@ -154,6 +166,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.gameMap);
         mapFragment.getMapAsync(this);
+
+        for (int i = 0; i < green_markers.size(); ++i){
+            mMap.addMarker(green_markers.get(i));
+        }
+
+        for (int i = 0; i < red_markers.size(); ++i){
+            mMap.addMarker(red_markers.get(i));
+        }
     }
 
     @Override
