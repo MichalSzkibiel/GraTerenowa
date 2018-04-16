@@ -91,6 +91,9 @@ public class myAdapter extends RecyclerView.Adapter {
         LatLng position = MapsActivity.activeMapsActivity.getPosition();
         double accuracy = MapsActivity.activeMapsActivity.getAccuracy();
         double distance = distance(posOfObject.latitude, posOfObject.longitude, position.latitude, position.longitude);
+        if (GameSetupActivity.current.elements.get(idx).found){
+            return;
+        }
         if (accuracy > 100){
             GameSetupActivity.current.elements.get(idx).commissions--;
             TaskListActivity.activeTasksListActivity.accuracy_dialog();
@@ -123,7 +126,7 @@ public class myAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, final int i) {
         ((MyViewHolder) viewHolder).questView.setText(GameSetupActivity.current.elements.get(i).quest);
         ((MyViewHolder) viewHolder).commNumber.setText(String.valueOf(GameSetupActivity.current.elements.get(i).commissions));
-        if (GameSetupActivity.current.elements.get(i).found == true)
+        if (GameSetupActivity.current.elements.get(i).found)
             ((MyViewHolder) viewHolder).itemView.setBackgroundColor(Color.GREEN);
     }
 

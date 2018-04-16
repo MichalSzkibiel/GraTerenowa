@@ -243,7 +243,6 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                 do{
                     lon3 = points.get((++it)%points.size()).longitude;
                 }while(lon3 == lon2);
-                double lat3 = points.get((++it)%points.size()).latitude;
                 if (lon3 > lon0 && lon2 < lon0 || lon3 < lon0 && lon2 > lon0){
                     count++;
                 }
