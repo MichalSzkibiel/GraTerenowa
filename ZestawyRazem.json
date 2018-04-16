@@ -223,7 +223,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Główny_Politechniki_Warszawskiej"
+        "name": "Gmach_Główny_Politechniki_Warszawskiej",
         "quest": "Różowy$_eklektyczny$_pełen_wiedzy"
       }
     },
@@ -237,7 +237,7 @@
         ]
       },
       "properties":{
-        "name": "Plac_Politechniki"
+        "name": "Plac_Politechniki",
         "quest": "Widoczny_z_rogu_Szczęki"
       }
     },
@@ -251,7 +251,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Fizyki"
+        "name": "Gmach_Fizyki",
         "quest": "Jego_doktorantką_była_dwukrotna_Noblistka"
       }
     },
@@ -265,7 +265,7 @@
         ]
       },
       "properties":{
-        "name": "Komin_starej_kotłowni"
+        "name": "Komin_starej_kotłowni",
         "quest": "Kiedyś_ogrzewał_studentów$_aby_mieli_ciepło"
       }
     },
@@ -279,7 +279,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Chemii"
+        "name": "Gmach_Chemii",
         "quest": "Czasami_w_piwnicy_mu_coś_ekspoduje"
       }
     },
@@ -293,7 +293,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Wydziału_Transportu"
+        "name": "Gmach_Wydziału_Transportu",
         "quest": "Steruje_ruchem_rydwanów"
       }
     },
@@ -307,7 +307,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Lotniczy-MEiLu"
+        "name": "Gmach_Lotniczy-MEiLu",
         "quest": "Silnik_odrzutowca"
       }
     },
@@ -321,7 +321,7 @@
         ]
       },
       "properties":{
-        "name": "Instytut_Techniki_Cieplnej"
+        "name": "Instytut_Techniki_Cieplnej",
         "quest": "Wielka_Turbina"
       }
     },
@@ -335,7 +335,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Elektroniki"
+        "name": "Gmach_Elektroniki",
         "quest": "Za_drzewami_pełno_komputerów"
       }
     },
@@ -349,7 +349,7 @@
         ]
       },
       "properties":{
-        "name": "Gmach_Matematyki"
+        "name": "Gmach_Matematyki",
         "quest": "Nowoczesny$_pełen_liczb"
       }
     },

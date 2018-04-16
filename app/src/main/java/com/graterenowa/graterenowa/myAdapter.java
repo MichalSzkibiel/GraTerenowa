@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
@@ -28,6 +31,7 @@ import static java.lang.Math.sqrt;
 
 public class myAdapter extends RecyclerView.Adapter {
 
+    private DatabaseReference mDatabase;
     private RecyclerView mRecyclerView;
     private int idx;
 
@@ -53,7 +57,7 @@ public class myAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.task, viewGroup, false);
-
+        mDatabase = FirebaseDatabase.getInstance().getReference("odwiedzone");//moze sie tu przydac?1
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

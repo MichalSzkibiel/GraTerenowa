@@ -28,7 +28,7 @@
         android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/prompt_email"
+        android:hint="Email"
         android:inputType="textEmailAddress"
         android:maxLines="3"
         android:singleLine="true" />
@@ -36,7 +36,7 @@
         android:id="@+id/nickname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="pseudonim"
+        android:hint="@string/prompt_email"
         android:inputType="text"
         android:maxLines="2"
         android:singleLine="true" />
@@ -62,6 +62,7 @@
         android:imeOptions="actionUnspecified"
         android:maxLines="1"
         android:singleLine="true" />
+
     <Button
         android:id="@+id/register"
         style="?android:textAppearanceSmall"

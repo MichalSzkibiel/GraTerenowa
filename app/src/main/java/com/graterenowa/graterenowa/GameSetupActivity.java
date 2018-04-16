@@ -116,6 +116,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                         json = getResources().getString(R.string.Pole_Mokotowskie_set);
                         name = "Pole Mokotowskie";
                         break;
+
                 }
                 current = new FeaturesContainer(name, json);
                 range_of_game = mMap.addPolygon(current.range);
