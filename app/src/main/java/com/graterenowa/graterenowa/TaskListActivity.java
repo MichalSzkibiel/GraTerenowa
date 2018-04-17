@@ -11,13 +11,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+//Okno przechowujące listę zadań
+
 public class TaskListActivity extends AppCompatActivity {
 
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private Button mReturnButton;
-    private Button mEndGameButton;
     private int points;
     public static TaskListActivity activeTasksListActivity;
 
@@ -25,28 +22,25 @@ public class TaskListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task_list);
+        //Ustawienie tego activity na aktywne
         activeTasksListActivity = this;
-
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        //Ustawienie RecyclerView
+        RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        mAdapter = new myAdapter(mRecyclerView);
+        RecyclerView.Adapter mAdapter = new myAdapter(mRecyclerView);
         mRecyclerView.setAdapter(mAdapter);
-
-        mReturnButton = (Button) findViewById(R.id.returnToMap);
+        //Ustawienie przycisku powrotu
+        Button mReturnButton = (Button) findViewById(R.id.returnToMap);
         mReturnButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 returnIntent();
             }
         });
-
-        mEndGameButton = (Button) findViewById(R.id.endGame);
+        //Ustawienie przycisku zakończenia
+        Button mEndGameButton = (Button) findViewById(R.id.endGame);
         mEndGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,9 +54,11 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void end_game(){
+        //Obliczenie punktów - suma punktów za czas i za zadania
         long millis = System.currentTimeMillis() - MapsActivity.starttime;
         int seconds = (int) (millis / 1000);
         points = MapsActivity.points + 3600 - seconds;
+        //Upewnienie
         new AlertDialog.Builder(this)
                 .setMessage("Czy na pewno chcesz skończyć grę z wynikiem " + String.valueOf(points) + "?")
                 .setNegativeButton("NIE", new DialogInterface.OnClickListener() {
@@ -81,14 +77,17 @@ public class TaskListActivity extends AppCompatActivity {
     }
 
     private void endIntent(){
+        //Przejście do ekranu podsumowania z przekazanymi punktami
         Intent intent = new Intent(this, Summary.class);
         intent.putExtra("Points", points);
         startActivity(intent);
+        //Zakończenie działania mapy i tego activity
         MapsActivity.activeMapsActivity.finish();
         finish();
     }
 
     public void accuracy_dialog(){
+        //Dialog informujący o tym, że pozycja jest za mało dokładna
         new AlertDialog.Builder(this)
                 .setMessage("Dokładność pozycji jest większa niż 100 metrów. Zgłoszenie nieważne.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {

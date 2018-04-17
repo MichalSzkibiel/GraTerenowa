@@ -535,4 +535,7 @@
   }
 ]
 </string>
+  <string name="rating_return">Wróć do głównego menu</string>
+  <string name="high_scores">Najlepsze Wyniki</string>
+  <string name="here">Tu jesteś</string>
 </resources>

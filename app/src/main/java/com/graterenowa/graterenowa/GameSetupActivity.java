@@ -44,37 +44,32 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+//Activity służące do wyboru zestawu gry
+
 public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private Spinner chooseSpinner;
     public static FeaturesContainer current;
     private Polygon range_of_game;
-    private FusedLocationProviderClient locator;
-    private Circle locCircle;
-    private Marker locMarker;
+    private LocIndicator locIndicator;
     private LatLng position;
     private LocationCallback callback = new LocationCallback(){
         @Override
         public void onLocationResult(LocationResult locationResult){
+            //Po każdej lokalizacji należy:
             if(locationResult.getLastLocation() != null){
+                //Pobrać szerokość i długość geograficzną oraz dokładność lokalizacji
                 double lat = locationResult.getLastLocation().getLatitude();
                 double lon = locationResult.getLastLocation().getLongitude();
                 double accuracy = locationResult.getLastLocation().getAccuracy();
+                //Przypisanie współrzędnych do pozycji
                 position = new LatLng(lat, lon);
-                if (locCircle != null)
-                    locCircle.remove();
-                if (locMarker != null)
-                    locMarker.remove();
-                locCircle = mMap.addCircle(new CircleOptions()
-                                    .center(position)
-                                    .fillColor(0x220000FF)
-                                    .radius(accuracy)
-                                    .strokeWidth(0.0f));
-                locMarker = mMap.addMarker(new MarkerOptions()
-                                    .position(position)
-                                    .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
-                                    .title("Tu jesteś"));
+                //Ustawienie pozycji
+                if (locIndicator != null)
+                    locIndicator.move(mMap, position, accuracy);
+                else
+                    locIndicator = new LocIndicator(mMap, position, accuracy);
+
             }
             else{
                 Log.d(TAG, "Brak wspolrzednych.");
@@ -87,24 +82,24 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_setup);
+        //Pobranie map
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.setupMap);
         mapFragment.getMapAsync(this);
-        Log.d(TAG, mapFragment.toString());
-        chooseSpinner = findViewById(R.id.setChoose);
+        //Ustawienie opcji spinnera
+        Spinner chooseSpinner = findViewById(R.id.setChoose);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.game_sets, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         chooseSpinner.setAdapter(adapter);
         chooseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                 int pos, long id) {
-                // An item was selected. You can retrieve the selected item using
+                // Jeżeli jest poligon, to go usuń
                 if (range_of_game != null)
                     range_of_game.remove();
+                //Pobranie nazwy i jsona z res
                 String json = "";
                 String name = "";
                 switch (parent.getItemAtPosition(pos).toString()) {
@@ -118,8 +113,11 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                         break;
 
                 }
+                //Ustawienie zestawu obecnego na wybrany
                 current = new FeaturesContainer(name, json);
+                //Rysowanie zasięgu gry
                 range_of_game = mMap.addPolygon(current.range);
+                //Ustawienie okna mapy na takie, by pokazywało poligon i pozycję
                 List<LatLng> points = range_of_game.getPoints();
                 LatLngBounds bounds;
                 if (position != null)
@@ -133,22 +131,26 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                // Another interface callback
             }
         });
+        //Rozpoczęcie gry - callback
         Button beginGame = (Button) findViewById(R.id.BeginGameButton);
         beginGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (current == null){
+                    //Nie wybrano zestawu
                     createDialog();
                     return;
                 }
                 else if(!is_in_a_range()){
+                    //Gracz poza zasięgiem
                     createRangeDialog();
                     return;
                 }
                 makeIntent();
             }
         });
-        locator = LocationServices.getFusedLocationProviderClient(this);
+        //Ustalenie opcji lokalizacji
+        FusedLocationProviderClient locator = LocationServices.getFusedLocationProviderClient(this);
         @SuppressLint("RestrictedApi") LocationRequest request = new LocationRequest();
         request.setInterval(1000);
 
@@ -156,12 +158,14 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     }
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        //Warszawa
         mMap = googleMap;
         LatLng pos = new LatLng(52.25, 21.0);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(pos, 10));
     }
 
     public static LatLngBounds getBoundsFromPolygon(LatLng position, List<LatLng> points){
+        //Wyszukiwanie bbox poligonu i pozycji
         double latn = position.latitude;
         double lats = position.latitude;
         double lone = position.longitude;
@@ -182,14 +186,19 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void makeIntent(){
+        //Uruchomienie gry
         Intent startGame = new Intent(this, MapsActivity.class);
+        //Dodanie pierwszej pozycji
         startGame.putExtra("lat", position.latitude);
         startGame.putExtra("lon", position.longitude);
+        //Inicjalizacja punktów, czasu i list markerów
         MapsActivity.initialize_static_content();
+        //Rozpoczęcie gry i koniec obecnego activity
         startActivity(startGame);
         finish();
     }
     private void createDialog(){
+        //Informacja, że gracz chciał rozpocząć grę bez wyboru zestawu
         new AlertDialog.Builder(this)
                 .setMessage("Nie wybrałeś jeszcze zestawu.")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -201,6 +210,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private void createRangeDialog(){
+        //Informacja, że gracz chciał rozpocząć grę poza obszarem
         new AlertDialog.Builder(this)
                 .setMessage("Znajdujesz się poza zasięgiem zestawu. Grę można rozpocząć będąc dopiero w zasięgu zestawu")
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -212,6 +222,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     }
 
     private boolean is_in_a_range(){
+        //Standardowy algorytm sprawdzający, czy punkt znajduje się wewnątrz poligonu - parzystość przecięć
         List<LatLng> points = range_of_game.getPoints();
         int count = 0;
         if (position == null)

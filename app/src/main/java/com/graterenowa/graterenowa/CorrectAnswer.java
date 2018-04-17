@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 //Dobra odpowiedź, moja działka
+/*
+    Pokazuje się gdy gracz wskaże dobrą odpowiedź
+ */
 public class CorrectAnswer extends AppCompatActivity {
     private TextView mName;
     private TextView mQuest;
@@ -17,14 +20,18 @@ public class CorrectAnswer extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_correct_answer);
+        //Pobranie indentyfikatora obiektu z intentu
         Intent intent = getIntent();
         int idx = intent.getIntExtra("index", 0);
+        //Pobranie nazwy oniektu i pytania
         String name = GameSetupActivity.current.elements.get(idx).name;
         String quest = GameSetupActivity.current.elements.get(idx).quest;
+        //Ustawienie nazwy i pytania w odpowiednich TextView
         mName = (TextView) findViewById(R.id.correct_name_view);
         mName.setText(name);
         mQuest = (TextView) findViewById(R.id.correct_quest_view);
         mQuest.setText(quest);
+        //Ustalenie callbacka na przycisk potwierdzający - koniec activity
         OK = (Button) findViewById(R.id.correct_OK);
         OK.setOnClickListener(new View.OnClickListener() {
             @Override

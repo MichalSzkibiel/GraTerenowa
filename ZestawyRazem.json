@@ -1,7 +1,6 @@
-{
-  [
+[
 	{
-	"obszar": "Pole_Mokotowskie"
+	"name": "Pole_Mokotowskie",
   "type": "FeatureCollection",
   "features": [
     {
@@ -208,7 +207,7 @@
   ]
 },
 {
-	"obszar":"Politechnika_Warszawska"
+	"name":"Politechnika_Warszawska",
   "type": "FeatureCollection",
   "features": [
     {
@@ -435,4 +434,3 @@
   ]
 }
 ]
-}
