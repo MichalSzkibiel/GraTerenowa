@@ -42,7 +42,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 //Activity służące do wyboru zestawu gry
 
@@ -51,8 +53,11 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     private GoogleMap mMap;
     public static FeaturesContainer current;
     private Polygon range_of_game;
+    private SetsHandler sh;
     private LocIndicator locIndicator;
     private LatLng position;
+    private Spinner chooseSpinner;
+    private ArrayAdapter<String> chooseSpinnerAdapter;
     private LocationCallback callback = new LocationCallback(){
         @Override
         public void onLocationResult(LocationResult locationResult){
@@ -86,12 +91,11 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.setupMap);
         mapFragment.getMapAsync(this);
+        //Pobór zestawów z firebase'a
+        sh = new SetsHandler(this);
+
         //Ustawienie opcji spinnera
-        Spinner chooseSpinner = findViewById(R.id.setChoose);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.game_sets, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        chooseSpinner.setAdapter(adapter);
+        chooseSpinner = findViewById(R.id.setChoose);
         chooseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
@@ -99,20 +103,9 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                 // Jeżeli jest poligon, to go usuń
                 if (range_of_game != null)
                     range_of_game.remove();
-                //Pobranie nazwy i jsona z res
-                String json = "";
-                String name = "";
-                switch (parent.getItemAtPosition(pos).toString()) {
-                    case "Politechnika Warszawska":
-                        json = getResources().getString(R.string.Politechnika_Warszawska_set);
-                        name = "Politechnika Warszawska";
-                        break;
-                    case "Pole Mokotowskie":
-                        json = getResources().getString(R.string.Pole_Mokotowskie_set);
-                        name = "Pole Mokotowskie";
-                        break;
-
-                }
+                //Pobranie nazwy ze spinnera i zestawu z SetsHandlera
+                String name = parent.getItemAtPosition(pos).toString();
+                JSONObject json = sh.getSet(name);
                 //Ustawienie zestawu obecnego na wybrany
                 current = new FeaturesContainer(name, json);
                 //Rysowanie zasięgu gry
@@ -129,6 +122,31 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
             }
             public void onNothingSelected(AdapterView<?> parent) {
                // Another interface callback
+            }
+        });
+        //Znalezienie najbliższego - callback
+        Button findClosest = (Button) findViewById(R.id.findClosestButton);
+        findClosest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position == null || chooseSpinnerAdapter == null){
+                    //Bez tych danych nie da się znaleźć najbliższego zestawu
+                    noDataDialog();
+                }
+                //Wyszukiwanie zestawu najbliższego w prostej linii
+                ArrayList<LatLng> centroids = sh.getCentroids();
+                double dist_min = 99999999999999999999.0;
+                int min_idx = -1;
+                for (int i = 0; i < centroids.size(); ++i){
+                    double dist = myAdapter.distance(position.latitude, position.longitude, centroids.get(i).latitude, centroids.get(i).longitude);
+                    if (dist < dist_min) {
+                        dist_min = dist;
+                        min_idx = i;
+                    }
+                }
+                //Ustawienie najbliższego zestawu
+                String name = sh.getName(centroids.get(min_idx));
+                chooseSpinner.setSelection(chooseSpinnerAdapter.getPosition(name));
             }
         });
         //Rozpoczęcie gry - callback
@@ -260,5 +278,27 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
             }
         }
         return count%2 == 1;
+    }
+
+    public void setSpinnerList(List<String> set_names){
+        //Funkcja, która służy do ustawienia nazw zestawów w spinnerzez po ich pobraniu
+        chooseSpinnerAdapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, set_names);
+        chooseSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        chooseSpinner.setAdapter(chooseSpinnerAdapter);
+        //Zamiana opisu na stosowny w tej chwili
+        TextView chooseSetText = (TextView) findViewById(R.id.setChooseText);
+        chooseSetText.setText(R.string.setChooseText);
+    }
+
+    private void noDataDialog(){
+        new AlertDialog.Builder(this)
+                .setMessage("Brak pozycji lub zestawy nie zostały jeszcze pobrane")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                }).show();
     }
 }

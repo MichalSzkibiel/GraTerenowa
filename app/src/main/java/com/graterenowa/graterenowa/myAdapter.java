@@ -156,7 +156,7 @@ public class myAdapter extends RecyclerView.Adapter {
         return GameSetupActivity.current.elements.size();
     }
 
-    private double distance(double lat_a, double lng_a, double lat_b, double lng_b)
+    public static double distance(double lat_a, double lng_a, double lat_b, double lng_b)
     {
         //Funkcja licząca odległość pomiędzy punktami na sferze
         double earthRadius = 3958.75;

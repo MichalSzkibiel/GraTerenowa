@@ -33,7 +33,7 @@
         android:layout_toLeftOf="@+id/BeginGameButton"
         android:layout_toStartOf="@+id/BeginGameButton"
         android:ems="10"
-        android:text="@string/setChooseText" />
+        android:text="@string/setChooseTextWait" />
 
     <Button
         android:id="@+id/findClosestButton"

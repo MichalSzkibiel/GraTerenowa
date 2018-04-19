@@ -26,7 +26,7 @@ public class FeaturesContainer {
     public List<GameFeature> elements;
     public PolygonOptions range;
 
-    public FeaturesContainer(String nm, String json){
+    public FeaturesContainer(String nm, JSONObject main){
         //Konstruktor, który parsuje jsona jako String
         //Proste przypisanie nazwy
         name = nm;
@@ -35,7 +35,6 @@ public class FeaturesContainer {
         range = new PolygonOptions();
         try {
             //Parsowanie GeoJSONa
-            JSONObject main = new JSONObject(json);
             JSONArray features = main.getJSONArray("features");
             for (int i = 0; i < features.length(); ++i){
                 JSONObject feature = features.getJSONObject(i);
