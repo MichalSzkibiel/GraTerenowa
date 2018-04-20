@@ -135,6 +135,7 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                 if (position == null || chooseSpinnerAdapter == null){
                     //Bez tych danych nie da się znaleźć najbliższego zestawu
                     noDataDialog();
+                    return;
                 }
                 //Wyszukiwanie zestawu najbliższego w prostej linii
                 ArrayList<LatLng> centroids = sh.getCentroids();
@@ -162,11 +163,11 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                     createDialog();
                     return;
                 }
-                /*else if(!is_in_a_range()){
+                else if(!is_in_a_range()){
                     //Gracz poza zasięgiem
                     createRangeDialog();
                     return;
-                }*/
+                }
                 makeIntent();
             }
         });

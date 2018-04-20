@@ -61,7 +61,7 @@ public class Summary extends AppCompatActivity {
         String wynik= String.valueOf(points);
         String pseudo=nick.getText().toString().trim();
         if(!TextUtils.isEmpty(pseudo)){
-            is_submit=true;//sprawdzamy jeden
+            is_submit=true;//sprawdzamy czy jest dany nick wpisany
             String id= mDatabase.push().getKey();
             Score score = new Score(pseudo,wynik,GameSetupActivity.current.name);//pobieranie nazwy zestawu
             mDatabase.child(id).setValue(score);

@@ -20,9 +20,10 @@
         android:id="@+id/ZapiszWynik"
         android:layout_width="170dp"
         android:layout_height="62dp"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBaseline="@+id/zakoncz"
+        android:layout_alignBottom="@+id/zakoncz"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="125dp"
+        android:layout_alignParentStart="true"
         android:text="@string/zapisz_wynik" />
 
 
@@ -39,21 +40,22 @@
         android:id="@+id/zakoncz"
         android:layout_width="170dp"
         android:layout_height="62dp"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="right"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_toRightOf="@+id/ZapiszWynik"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/nickname"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="40dp"
         android:text="@string/koniec_gry" />
 
     <TextView
         android:id="@+id/NickLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/ZapiszWynik"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="36dp"
+        android:layout_below="@+id/twojepodsumowanie"
+        android:layout_marginTop="109dp"
         android:text="@string/Pseudo_label"
         android:textSize="18sp" />
 

@@ -5,11 +5,14 @@ import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,50 +23,68 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
 
 
 //Okno rankingu, twoja działka Karol
 public class Rating extends AppCompatActivity {
 
     private FirebaseDatabase FD;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mASL;
     private DatabaseReference mDatabase;
     private String score;
-    private ListView ranking;
+    private RecyclerView ranking;
+    private static String TAG="Rating";
+    private List<Score>listWyn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rating);
         setRequestedOrientation(
                 ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        ranking=(ListView)findViewById(R.id.Ranking);
-        mAuth=FirebaseAuth.getInstance();
-        FD= FirebaseDatabase.getInstance();//.getReference("Wynik");
-        mDatabase=FD.getReference();
-        FirebaseUser user= mAuth.getCurrentUser();
-        score= user.getUid();
+        listWyn=new ArrayList<Score>();
+        ranking=(RecyclerView)findViewById(R.id.Ranking);
+        FD= FirebaseDatabase.getInstance();
+        mDatabase=FD.getReference("Wynik");
 
-        mASL= new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user=firebaseAuth.getCurrentUser();
-                if(user !=null){
-                    //Log.d(score,"Uzytkownik:"+ user.getUid());
-                   toastMessage("osiagnal wyniki:"+user.getUid());//tu trzeba zrobić, aby pobierała wynik z Score
-                }
-                else
-                {
-                    //Log.d(score,"brak uzytkownika");
-                    toastMessage("brak wyniku");
-                }
-            }
-        };
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                showData(dataSnapshot);
+                String rat= dataSnapshot.getValue().toString();
+                try {
+                    JSONObject rat2json = new JSONObject(rat);
+                    Iterator<String> keys = rat2json.keys();
+                    while (keys.hasNext()){
+                        String key = keys.next().toString();
+                        JSONObject val= rat2json.getJSONObject(key);
+                        listWyn.add(new Score(val));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Collections.sort(listWyn, new Comparator<Score>() {
+                    @Override
+                    public int compare(Score score, Score t1) {
+                        //sortowanie po wynikach
+                        if(Integer.parseInt(score.score)> Integer.parseInt(t1.score)){
+                        return -1;// jezeli wynik jest lepszy- idzie ku gorze tablicy
+                        }
+                        else if(Integer.parseInt(score.score)< Integer.parseInt(t1.score)){
+                            return 1;// jesli nizszy to w dol
+                        }
+                        else{
+                            return 0;
+                        }
+                    }
+                });
+                showData();
             }
 
             @Override
@@ -81,37 +102,18 @@ public class Rating extends AppCompatActivity {
         });
 
     }
-    private  void showData(DataSnapshot DS){
-        for (DataSnapshot ds: DS.getChildren()){
-            Score sc = new Score();
-            sc.setPseudonim(ds.child(score).getValue(Score.class).getPseudonim());
-            sc.setScore(ds.child(score).getValue(Score.class).getScore());
-
-            //Log.d(TELECOM_SERVICE,"pseudonim:" +sc.getPseudonim());//TAG wywala, więc wrzuciłem narazie cokolwiek co może pasować
-            //Log.d(TELECOM_SERVICE,"wynik:" +sc.getScore());
-
-            ArrayList<String> array= new ArrayList<>();
-            array.add(sc.getPseudonim());
-            array.add(sc.getScore());
-            ArrayAdapter adapter = new ArrayAdapter(this,R.layout.activity_rating,array);
-            ranking.setAdapter(adapter);
+    private  void showData(){
+        List<String> parsedScore = new ArrayList<>();
+        for (int i = 0; i < listWyn.size(); ++i) {
+            parsedScore.add(listWyn.get(i).getPseudonim() + "\t" + listWyn.get(i).getName() + "\t" + listWyn.get(i).getScore());
         }
+        ranking.setHasFixedSize(true);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+        ranking.setLayoutManager(mLayoutManager);
+        RecyclerView.Adapter mAdapter = new RatingAdapter(listWyn);
+        ranking.setAdapter(mAdapter);
 
     }
-    /*@Override
-    public void OnStart()
-    {
-        super.onStart();
-        mAuth.addAuthStateListener(mASL);
-    }
-    //@Override
-    public void OnStop()
-    {
-        super.onStop();
-        if(mASL != null) {
-            mAuth.removeAuthStateListener(mASL);
-        }
-    }*/
     private void toastMessage(String message){
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
     }
