@@ -3,6 +3,7 @@ package com.graterenowa.graterenowa;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.location.Location;
@@ -87,6 +88,8 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_setup);
+        setRequestedOrientation(
+                ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         //Pobranie map
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.setupMap);
