@@ -328,4 +328,7 @@
   <string name="rating_return">Wróć do głównego menu</string>
   <string name="high_scores">Najlepsze Wyniki</string>
   <string name="here">Tu jesteś</string>
+    <string name="zapisz_wynik">Zapisz Wynik</string>
+  <string name="koniec_gry">Zakończ grę</string>
+  <string name="Pseudo_label">Podaj swój pseudomin dla tablicy wyników</string>
 </resources>

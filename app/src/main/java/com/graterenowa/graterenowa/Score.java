@@ -6,26 +6,34 @@ package com.graterenowa.graterenowa;
 
 public class Score {
 
-    String psudonim;
+    String pseudonim;
     String score;
+    String set_name;
 
     public Score(){
     }
-    public Score(String psudonim, String score){
-        this.psudonim=psudonim;
+    public Score(String pseudonim, String score, String set_name){
+        this.pseudonim=pseudonim;
         this.score=score;
+        this.set_name=set_name;
     }
     public void setPseudonim(String pseudonim){
-        this.psudonim=pseudonim;
+        this.pseudonim=pseudonim;
     }
     public void setScore(String score){
         this.score=score;
     }
     public String getPseudonim(){
-        return psudonim;
+        return pseudonim;
     }
     public String getScore(){
         return score;
+    }
+    public void setName(String zest){
+        set_name=zest;
+    }
+    public String getName(){
+        return set_name;
     }
 }
 

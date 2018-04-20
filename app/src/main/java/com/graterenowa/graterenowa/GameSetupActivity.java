@@ -159,11 +159,11 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
                     createDialog();
                     return;
                 }
-                else if(!is_in_a_range()){
+                /*else if(!is_in_a_range()){
                     //Gracz poza zasięgiem
                     createRangeDialog();
                     return;
-                }
+                }*/
                 makeIntent();
             }
         });
@@ -207,8 +207,10 @@ public class GameSetupActivity extends AppCompatActivity implements OnMapReadyCa
         //Uruchomienie gry
         Intent startGame = new Intent(this, MapsActivity.class);
         //Dodanie pierwszej pozycji
-        startGame.putExtra("lat", position.latitude);
-        startGame.putExtra("lon", position.longitude);
+        if (position != null) {
+            startGame.putExtra("lat", position.latitude);
+            startGame.putExtra("lon", position.longitude);
+        }
         //Inicjalizacja punktów, czasu i list markerów
         MapsActivity.initialize_static_content();
         //Rozpoczęcie gry i koniec obecnego activity
